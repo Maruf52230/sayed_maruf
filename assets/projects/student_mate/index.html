@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Maker App</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- CDN Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/2.1.5/tesseract.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <!-- Modern Font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Note Maker App</h1>
+            <p>Extract text from images & PDFs, generate AI notes, save as PDF</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <div class="file-upload">
+                    <h2>Upload Files</h2>
+                    <div class="upload-container">
+                        <div class="upload-box">
+                            <h3>Images</h3>
+                            <input type="file" id="image-upload" accept="image/*" multiple>
+                            <label for="image-upload">Select Images</label>
+                            <div id="image-preview" class="file-preview"></div>
+                        </div>
+                        
+                        <div class="upload-box">
+                            <h3>PDF Files</h3>
+                            <input type="file" id="pdf-upload" accept="application/pdf" multiple>
+                            <label for="pdf-upload">Select PDFs</label>
+                            <div id="pdf-preview" class="file-preview"></div>
+                            
+                            <div class="page-range">
+                                <label for="page-range">Page Range (all PDFs):</label>
+                                <input type="text" id="page-range" placeholder="e.g., 1-10,15,20-25">
+                                <p class="hint">Leave empty to extract all pages</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="extract-text-btn">Start Making Notes</button>
+                    <button id="generate-notes-btn" style="display:none;">Generate Notes</button>
+                    <button id="save-pdf-btn" class="tooltip">
+                        Save note as PDF
+                        <span class="tooltiptext">Creates a properly paginated PDF document with all your notes</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="preview-section">
+                <div class="preview-container">
+                    <div class="preview-box">
+                        <h3>Extracted Text</h3>
+                        <div class="preview-actions">
+                            <button class="action-btn copy-btn" id="copy-extracted" title="Copy to clipboard">📋</button>
+                            <button class="action-btn clear-btn" id="clear-extracted" title="Clear text">🗑️</button>
+                        </div>
+                        <div id="extracted-text" contenteditable="true"></div>
+                    </div>
+                    
+                    <div class="preview-box">
+                        <h3>Generated Notes</h3>
+                        <div class="preview-actions">
+                            <button class="action-btn copy-btn" id="copy-notes" title="Copy to clipboard">📋</button>
+                            <button class="action-btn clear-btn" id="clear-notes" title="Clear notes">🗑️</button>
+                        </div>
+                        <div id="generated-notes" contenteditable="true"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Powered by Tesseract.js, DeepSeek R1 Zero, and jsPDF</p>
+            <p><small>Multi-page PDF support included - your long notes will be properly formatted across pages</small></p>
+        </footer>
+    </div>
+
+    <!-- Custom Scripts -->
+    <script src="tesseract.js"></script>
+    <script src="pdf-parse.js"></script>
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        // Display file names when selected
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show image file names
+            document.getElementById('image-upload').addEventListener('change', function(e) {
+                const preview = document.getElementById('image-preview');
+                if (e.target.files.length > 0) {
+                    let html = '<ul class="file-list">';
+                    Array.from(e.target.files).forEach(file => {
+                        html += `<li>${file.name} (${formatFileSize(file.size)})</li>`;
+                    });
+                    html += '</ul>';
+                    preview.innerHTML = html;
+                } else {
+                    preview.innerHTML = '';
+                }
+            });
+            
+            // Show PDF file names
+            document.getElementById('pdf-upload').addEventListener('change', function(e) {
+                const preview = document.getElementById('pdf-preview');
+                if (e.target.files.length > 0) {
+                    let html = '<ul class="file-list">';
+                    Array.from(e.target.files).forEach(file => {
+                        html += `<li>${file.name} (${formatFileSize(file.size)})</li>`;
+                    });
+                    html += '</ul>';
+                    preview.innerHTML = html;
+                } else {
+                    preview.innerHTML = '';
+                }
+            });
+            
+            // Copy to clipboard functionality
+            document.getElementById('copy-extracted').addEventListener('click', function() {
+                copyToClipboard('extracted-text');
+            });
+            
+            document.getElementById('copy-notes').addEventListener('click', function() {
+                copyToClipboard('generated-notes');
+            });
+            
+            // Clear text functionality
+            document.getElementById('clear-extracted').addEventListener('click', function() {
+                document.getElementById('extracted-text').innerHTML = '';
+            });
+            
+            document.getElementById('clear-notes').addEventListener('click', function() {
+                document.getElementById('generated-notes').innerHTML = '';
+            });
+            
+            // Helper function to copy text to clipboard
+            function copyToClipboard(elementId) {
+                const element = document.getElementById(elementId);
+                const text = element.innerText;
+                
+                if (!text) return;
+                
+                navigator.clipboard.writeText(text).then(() => {
+                    // Create a brief "Copied!" animation
+                    const notification = document.createElement('div');
+                    notification.className = 'copy-notification';
+                    notification.textContent = 'Copied!';
+                    element.parentNode.appendChild(notification);
+                    
+                    setTimeout(() => {
+                        notification.classList.add('fade-out');
+                        setTimeout(() => notification.remove(), 300);
+                    }, 1000);
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

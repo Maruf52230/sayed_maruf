@@ -1,0 +1,122 @@
+                      Short Summery
+
+Sayed Maruf - Softwere Developer | AI prompt Engineer
+
+Who am I services ?
+
+A flutter softwere developer. Facebook Marketer . Ai prompt engineer . 
+Email: sayedmarufprof@gmail.com
+phone: +8801881574747
+Address: Bayezid, Chattogram, Ctg
+
+Expertise : Softwere for Android and Ios, Wordpress, Facebook Marketing, Webdesign
+
+Proggramming Language : Dart, Html CSS, Javascript, Python
+Language : Bangla, English , Hindi
+
+My services : Softwere for Android and Ios, Wordpress, Facebook Marketing, Webdesign
+
+
+
+                 Detailed Explaination
+
+**SAYED MARUF**  
+**Software Developer | AI Prompt Engineer | Facebook Marketer**  
+Bayezid, Chattogram, Bangladesh  
+Email: sayedmarufprof@gmail.com  
+Phone: +8801881574747  
+
+---
+
+### **PROFESSIONAL SUMMARY**  
+Passionate and skilled **Flutter software developer, AI prompt engineer, and Facebook marketer** with expertise in developing mobile applications, WordPress solutions, and digital marketing strategies. Strong background in **software development, web design, and AI-driven content creation**. Adept at problem-solving, collaborating with teams, and delivering high-quality digital solutions.
+
+---
+
+### **EXPERTISE**  
+✔ **Software Development** (Android & iOS using Flutter)  
+✔ **WordPress Development** (Custom themes & plugins)  
+✔ **Facebook Marketing** (Ad campaigns, lead generation)  
+✔ **Web Design & Development** (HTML, CSS, JavaScript)  
+✔ **AI Prompt Engineering** (Optimizing AI-based workflows)  
+
+---
+
+### **TECHNICAL SKILLS**  
+- **Programming Languages:** Dart, HTML, CSS, JavaScript, Python  
+- **Mobile Development:** Flutter, Firebase  
+- **Web Technologies:** WordPress, Elementor, WooCommerce  
+- **AI & Automation:** ChatGPT, OpenAI API, AI prompt engineering  
+- **Marketing Tools:** Facebook Ads Manager, Google Analytics  
+- **Version Control:** Git, GitHub  
+
+---
+
+### **WORK EXPERIENCE**  
+#### **Freelance Software Developer & AI Prompt Engineer** *(2022 - Present)*  
+- Developed **custom mobile applications** using Flutter for Android and iOS platforms.  
+- Built **WordPress websites** and plugins to enhance business functionality.  
+- Engineered **AI-driven content strategies** using OpenAI's APIs for automation.  
+- Managed **Facebook ad campaigns**, increasing engagement and conversions for clients.  
+- Provided consultation on **web design, UI/UX, and AI automation** solutions.  
+
+#### **Facebook Marketing Specialist** *(2021 - Present)*  
+- Designed and executed **highly targeted ad campaigns** on Facebook and Instagram.  
+- Improved brand reach and engagement using **data-driven ad optimization** strategies.  
+- Analyzed audience insights to increase lead conversion and **ROI for businesses**.  
+
+---
+
+### **EDUCATION**  
+**Bachelor’s in Computer Science & Engineering (CSE) – [University Name]** *(Ongoing/Completed)*  
+
+---
+
+### **CERTIFICATIONS**  
+✅ **Flutter Mobile App Development** – [Institute/Platform]  
+✅ **Facebook Ads & Digital Marketing** – [Institute/Platform]  
+✅ **AI & Machine Learning Basics** – [Institute/Platform]  
+
+---
+
+### **PROJECTS**  
+#### **1. Multi-Vendor E-Book Selling Platform**  
+- Developed a **responsive and scalable web application** for digital book sales.  
+- Integrated **Firebase for user authentication and secure transactions**.  
+
+#### **2. AI-Powered Note-Making App**  
+- Built a web-based **OCR-to-Notes application** with AI summarization features.  
+- Used **Tesseract.js for OCR** and **DeepSeek API for content summarization**.  
+
+#### **3. AI-Based Facebook Marketing Automation**  
+- Designed an **AI-driven tool** to research keywords, analyze markets, and optimize ad campaigns.  
+- Integrated **Facebook Graph API** for automated ad placement and budget management.  
+
+---
+
+### **LANGUAGES**  
+- **Bangla** (Native)  
+- **English** (Fluent)  
+- **Hindi** (Conversational)  
+
+---
+
+### **PERSONAL ATTRIBUTES**  
+✔ Problem-solving mindset with a strong analytical approach.  
+✔ Excellent communication and project management skills.  
+✔ Passionate about learning new technologies and AI-driven solutions.  
+✔ Adaptable to fast-paced environments and innovative challenges.  
+
+---
+
+### **CONTACT & PORTFOLIO**  
+📧 Email: sayedmarufprof@gmail.com  
+📞 Phone: +8801881574747  
+🌐 Portfolio: [Your Portfolio Link]  
+💼 LinkedIn: [Your LinkedIn Profile]  
+🚀 GitHub: [Your GitHub Profile]  
+Facebook: https://www.facebook.com/sayedmarufmd
+---
+
+This CV is designed to **highlight your expertise in Flutter, AI, and Facebook Marketing** while maintaining a professional structure. Feel free to modify it according to your specific experience or achievements!
+

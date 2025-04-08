@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Clone</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#343541] text-white">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="sidebar bg-[#202123] w-64 flex flex-col">
+            <!-- Top section with ChatGPT button -->
+            <div class="p-2 border-b border-gray-700">
+                <button class="flex items-center gap-3 p-3 w-full rounded hover:bg-gray-700 transition">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1024px-ChatGPT_logo.svg.png" alt="ChatGPT logo" class="w-6 h-6">
+                    <span>ChatGPT</span>
+                    <i class="fas fa-chevron-down ml-auto"></i>
+                </button>
+            </div>
+            
+            <!-- Model list -->
+            <div class="overflow-y-auto flex-1">
+                <div class="p-2">
+                    <!-- Model selection will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Settings button -->
+            <div class="p-3 border-t border-gray-700">
+                <div id="settings-btn" class="flex items-center gap-3 p-3 rounded hover:bg-gray-700 transition cursor-pointer">
+                    <i class="fas fa-cog w-6 h-6 flex items-center justify-center"></i>
+                    <div>
+                        <div class="font-medium">Settings</div>
+                        <div class="text-xs text-gray-400">API keys and Models</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main content area -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <div class="flex justify-between items-center p-2 border-b border-gray-700">
+                <div class="flex items-center">
+                    <!-- Title instead of dropdown -->
+                    <span class="text-xl font-semibold ml-2">AI Chat Assistant</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="clear-chat" class="rounded-full bg-gray-700 hover:bg-gray-600 px-4 py-2 flex items-center gap-2">
+                        <i class="fas fa-trash"></i>
+                        <span>Clear Chat</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Chat area -->
+            <div class="flex-1 overflow-auto p-4" id="chat-container">
+                <div class="flex flex-col items-center justify-center h-full">
+                    <h1 class="text-4xl font-bold mb-4">What can I help with?</h1>
+                    
+                    <!-- Model selection dropdown -->
+                    <div class="mb-6 w-full max-w-md">
+                        <label for="model-selector" class="block text-lg text-gray-400 mb-2 text-center">Select Model</label>
+                        <select id="model-selector" class="w-full bg-[#40414F] border border-gray-600 rounded p-2 text-white">
+                            <option value="deepseek/deepseek-r1-distill-llama-70b:free">DeepSeek R1 Distill LLama 70B</option>
+                            <option value="google/gemini-1.5-flash:free">Gemini 1.5 Flash</option>
+                            <option value="deepseek/deepseek-chat:free">DeepSeek Chat</option>
+                            <option value="mistralai/mistral-tiny:free">Mistral Tiny</option>
+                            <option value="meta/llama-3-8b-instruct:free">Llama 3 8B Instruct</option>
+                            <option value="aetherius/chronos-hermes-13b:free">Chronos Hermes 13B</option>
+                            <option value="deepseek/deepseek-r1:free">DeepSeek R1</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Available Models -->
+                    <div class="flex flex-col gap-2 items-center mb-6 text-center">
+                        <p class="text-md text-gray-400">Powered by multiple AI models</p>
+                        <div class="flex flex-wrap justify-center gap-2 max-w-xl">
+                            <span class="bg-gray-700 rounded-full px-3 py-1 text-xs">DeepSeek R1 Distill LLama 70B</span>
+                            <span class="bg-gray-700 rounded-full px-3 py-1 text-xs">Gemini 1.5 Flash</span>
+                            <span class="bg-gray-700 rounded-full px-3 py-1 text-xs">DeepSeek Chat</span>
+                            <span class="bg-gray-700 rounded-full px-3 py-1 text-xs">Mistral Tiny</span>
+                            <span class="bg-gray-700 rounded-full px-3 py-1 text-xs">Llama 3 8B Instruct</span>
+                            <span class="bg-gray-700 rounded-full px-3 py-1 text-xs">Chronos Hermes 13B</span>
+                            <span class="bg-gray-700 rounded-full px-3 py-1 text-xs">DeepSeek R1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input area -->
+            <div class="p-4 border-t border-gray-700">
+                <div class="max-w-3xl mx-auto">
+                    <div class="relative rounded-lg border border-gray-600 bg-[#40414F]">
+                        <textarea id="prompt-input" class="w-full bg-transparent p-4 outline-none text-white" rows="1" placeholder="Ask anything"></textarea>
+                        <div class="absolute bottom-3 right-3 flex items-center gap-2">
+                            <button id="send-button" class="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition">
+                                <i class="fas fa-paper-plane text-gray-300"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-gray-400 text-sm mt-2 text-center">
+                        ChatGPT can make mistakes. Check important info.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Settings modal -->
+    <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-[#2A2B32] rounded-lg p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold">Settings</h2>
+                <button id="close-settings" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- API Key Setting -->
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold mb-2">OpenRouter API Key</h3>
+                <div class="mb-2">
+                    <input type="password" id="api-key-input" class="w-full bg-[#40414F] border border-gray-600 rounded p-2 text-white" placeholder="Enter your OpenRouter API key">
+                </div>
+                <p class="text-sm text-gray-400">A default API key is already provided for convenience. You can get your own API key from <a href="https://openrouter.ai/keys" target="_blank" class="text-blue-400 hover:text-blue-300">openrouter.ai/keys</a>. Your API key is stored locally and never sent to our servers.</p>
+            </div>
+            
+            <!-- Custom Models -->
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold mb-2">Custom Models</h3>
+                <div id="custom-models-list" class="mb-4">
+                    <!-- Custom models will be added here dynamically -->
+                </div>
+                <div class="flex gap-2 mb-2">
+                    <input type="text" id="model-id-input" class="flex-1 bg-[#40414F] border border-gray-600 rounded p-2 text-white" placeholder="Model ID (e.g. anthropic/claude-2:free)">
+                    <input type="text" id="model-name-input" class="flex-1 bg-[#40414F] border border-gray-600 rounded p-2 text-white" placeholder="Display Name">
+                </div>
+                <button id="add-model-btn" class="bg-[#9C44F3] hover:bg-[#8A2BE2] text-white rounded py-2 px-4 w-full">
+                    Add Custom Model
+                </button>
+            </div>
+            
+            <!-- Save Settings Button -->
+            <button id="save-settings" class="bg-[#19C37D] hover:bg-[#15A36C] text-white rounded py-2 px-4 w-full mt-4">
+                Save Settings
+            </button>
+        </div>
+    </div>
+    
+    <!-- Bootstrap & Custom JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

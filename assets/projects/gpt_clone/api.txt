@@ -1,0 +1,10 @@
+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
+
+
+deepseek/deepseek-r1-distill-llama-70b:free
+google/gemini-1.5-flash:free
+deepseek/deepseek-chat:free
+mistralai/mistral-tiny:free
+meta/llama-3-8b-instruct:free
+aetherius/chronos-hermes-13b:free
+deepseek/deepseek-r1:free

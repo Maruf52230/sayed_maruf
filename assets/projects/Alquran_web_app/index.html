@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Quran Web App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Surah List Screen -->
+        <div class="screen active" id="surah-list-screen">
+            <header>
+                <h1>Al-Quran</h1>
+                <button id="menu-button" class="menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </header>
+            <div class="search-container">
+                <input type="text" id="search-surah" placeholder="Search Surah...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="surah-list" id="surah-list-container">
+                <!-- Surah list will be populated by JavaScript -->
+            </div>
+            <button id="last-read-btn" class="last-read-btn">
+                <i class="fas fa-bookmark"></i>
+                <span>Last Read</span>
+            </button>
+            <button id="last-viewed-btn" class="last-viewed-btn">
+                <i class="fas fa-history"></i>
+                <span>Last Viewed</span>
+            </button>
+        </div>
+
+        <!-- Surah Details Screen -->
+        <div class="screen" id="surah-details-screen">
+            <header>
+                <button id="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div>
+                    <h2 id="surah-title"></h2>
+                    <p id="surah-info"></p>
+                </div>
+                <button id="menu-button-details" class="menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </header>
+            <div class="surah-controls">
+                <div class="language-selector">
+                    <button class="lang-btn active" data-lang="en">English</button>
+                    <button class="lang-btn" data-lang="bn">বাংলা</button>
+                </div>
+                <div class="recite-controls">
+                    <button id="recite-surah-btn" class="recite-btn">
+                        <i class="fas fa-play"></i> Recite Surah
+                    </button>
+                    <button id="stop-recitation-btn" class="recite-btn stop">
+                        <i class="fas fa-stop"></i> Stop
+                    </button>
+                </div>
+            </div>
+            <div id="verses-container">
+                <!-- Verses will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the drawer -->
+    <div class="overlay" id="drawer-overlay"></div>
+    <div class="drawer" id="app-drawer">
+        <div class="drawer-header">
+            <h2>Settings</h2>
+            <button class="close-drawer" id="close-drawer">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="drawer-content">
+            <div class="theme-section">
+                <h3>Theme</h3>
+                <div class="theme-options">
+                    <button class="theme-btn blue" data-theme="blue">Blue</button>
+                    <button class="theme-btn purple" data-theme="purple">Purple</button>
+                    <button class="theme-btn green" data-theme="green">Green</button>
+                    <button class="theme-btn navy" data-theme="navy">Navy Blue</button>
+                </div>
+            </div>
+            <div class="developer-section">
+                <h3>Developer</h3>
+                <div class="developer-info">
+                    <img src="maruf.jpeg" alt="Sayed Maruf" class="developer-image">
+                    <div class="developer-name">Sayed Maruf</div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/sayedmarufmd" target="_blank" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="connection-status"></div>
+    <audio id="audio-player"></audio>
+    <script src="script.js"></script>
+</body>
+</html> 
